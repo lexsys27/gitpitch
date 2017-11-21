@@ -1,0 +1,84 @@
+play.crypto.secret = "$PLAY_SECRET"
+
+play.filters {
+  hosts {
+    allowed = ["localhost", "127.0.0.1", ".local"]
+  }
+}
+
+# GitPitch Custom Configuration
+gitpitch {
+
+  hostname = "localhost:9000"
+
+  https = false
+
+  storage {
+   home = "/srv/gitpitch/swap"
+  }
+
+  decktape {
+    home = "/srv/gitpitch/node_modules/decktape"
+  }
+
+  offline {
+
+    prod {
+        fixed {
+            assets {
+                home = "./lib/com.gitpitch.server-2.0-assets.jar"
+            }
+        }
+    }
+
+    dev {
+        fixed {
+            assets {
+                home = "./public/libs"
+            }
+        }
+        math {
+            assets {
+                home = "./public/libs-math"
+            }
+        }
+    }
+
+  }
+
+  dependency {
+    revealjs    = "3.5.0"
+    bootstrap   = "3.3.6"
+    jquery      = "2.2.4"
+    fontawesome = "4.6.3"
+    octicons    = "3.5.0"
+    highlightjs = "9.12.0"
+    highlight {
+        plugin = false
+    }
+  }
+
+  git {
+    repo {
+        services = [
+
+            {
+                name        = "GitHub"
+                type        = "github"
+                site        = "https://github.com/"
+                apibase     = "https://api.github.com/"
+                apitoken    = "token $GITHUB_TOKEN"
+                apitokenheader    = "Authorization"
+                rawbase     = "https://raw.githubusercontent.com/"
+                gistbase    = "https://gist.githubusercontent.com/"
+		            branchdelim = "~"
+                default     = "true"
+            }
+        ]
+    }
+  }
+
+  revealjs {
+    themes = ["black", "moon", "night", "beige", "sky", "white"]
+  }
+}
